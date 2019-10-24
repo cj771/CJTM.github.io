@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<title>Sales Tax Calculator</title>
+<header>
+    <h1>Calculator</h1>
+</header>
+
+<head>
+    <P>Please enter data for the appropriate section</P>
+    <p>This Is a project by Carter J</p>
+</head>
+
+<body>
+    <form id="inputs" class="frm1">
+        Regular Price: <br />
+        <input id="reg$" type="number" value="0" /> <br>
+
+        Sale: <br />
+        <input id="sale" type="number" value="0" /> <br>
+
+        Tax: <br />
+        <input id="tax" type="number" value="13" /> <br><br>
+
+    </form>
+
+    <button class="calculate" onclick="calculate()">Calculate</button>
+    <button class="resetb" onclick="reset()">Reset</button>
+
+    <br />
+    <br />
+
+    <p class="result" id="result">
+        Result =
+    </p>
+    <p id="roundnum"></p>
+
+
+
+    <script>
+
+        function calculate() {
+            var reg$ = document.getElementById("reg$").value;
+
+            if (reg$ == "0") {
+                alert("Please Fill in the regular price box")
+            } else {
+                var tax = document.getElementById("tax").value;
+                var sale = document.getElementById("sale").value;
+                var result = document.getElementById("result");
+                document.getElementById("result").style.color = "red";
+
+                const x = ((reg$ - ((sale / 100) * reg$)) * (tax / 100)) + (reg$ - ((sale / 100) * reg$))
+                const rnd = x.toFixed(2);
+
+                result.innerHTML = "Result = " + x;
+
+
+                document.getElementById("roundnum").innerHTML = "Rounded Price: $" + rnd;
+                document.getElementById("roundnum").style.color = "green";
+            }
+        }
+
+        function reset() {
+            document.getElementById("reg$").value = "0"
+            document.getElementById("sale").value = "0"
+            document.getElementById("result").innerText = "Result = "
+            document.getElementById("result").style.color = "black"
+            document.getElementById("roundnum").innerText = ""
+        }
+
+    </script>
+
+    <style>
+        p.result {
+            font-weight: bold;
+        }
+
+        .resetb, .calculate {
+            padding: 8px 18px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: rgb(175, 76, 76);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .resetb:hover, .calculate:hover {
+            background-color: #8e3e3e
+        }
+
+        .resetb:active, .calculate:active  {
+            background-color: #8e3e3e;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+        .frm1{
+            font-weight: bold;
+        }
+
+    </style>
+
+</body>
+
+</html>
